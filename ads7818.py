@@ -18,6 +18,7 @@ class ADS7818:
             self.conv = b'\x30\x00'
         else:
             self.conv = b'\xe0\x00'
+        baudrate = min(max(200000, baudrate), 4000000)
         self.spi.init(SPI.MASTER, baudrate=baudrate, polarity=1, phase=1, bits=16)
 
     def value(self):
