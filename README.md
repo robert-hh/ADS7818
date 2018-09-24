@@ -3,9 +3,9 @@
 This is a very short and simple class. It uses the SPI bus for the interface. That
 ensures that the tight timing requirements of the ADS7818 are met.
 
-**Constructor**
+## Constructor
 
-***adc = ADS7818(spi, \*, baudrate = 1000000, vref = 2.5, inverted = False)***
+### adc = ADS7818(spi, \*, baudrate = 1000000, vref = 2.5, inverted = False)
 
 - spi is an SPI object which has to be created by the caller. Just the Pins have to be assigned by the caller.
 The init method of the class sets baud rate, phase, polarity and word size.
@@ -17,20 +17,20 @@ of the equivalent voltage.
 - inverted set True is an inverted is added between the MOSI output and CONV input
 in order to get an high CONV level during quiet times.
 
-**Methods**
+## Methods
 
-***value = adc.value()***
+### value = adc.value()
 
 Retrieves the adc raw value using the setting of the constructor. The returned
 value is in the range of 0 - 4095
 
-***volt = adc.voltage()***
+### volt = adc.voltage()
 
 Reads the adc value and return the equivalent voltage. This is based on the vref
 value set in the constructor. The formula is:   
     voltage = 2 * vref * value / 4096
 
-**Interface**
+## Interface
 
 The ADS7818 is connected to the SPI bus signals. There is no CS needed. The
 connection consist of:
@@ -48,7 +48,7 @@ interface description of the ADS7818. In that is a problem, an inverter can be
 placed between MOSI and CONV, and the flag inverted has to be set True when calling
 the constructor.
 
-**Example**
+## Example
 
 ```
 # Drive the ADS7818 ADC using SPI
