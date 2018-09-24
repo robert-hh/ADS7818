@@ -7,11 +7,13 @@ ensures that the tight timing requirements of the ADS7818 are met.
 
 ***adc = ADS7818(spi, \*, baudrate = 1000000, vref = 2.5, inverted = False)***
 
-- spi is an spi object which has to be created by the callee. The init method
-of the class sets baud rate, phase, polarity and word size.
+- spi is an SPI object which has to be created by the caller. Just the Pins have to be assigned by the caller.
+The init method of the class sets baud rate, phase, polarity and word size.
 - baudrate defines the baud rate of the SPI. the default is 1000000.
-The valid range is 200kHz through 4 MHz.
-- vref is the reference voltage, used to calculate the voltage value.
+The valid range is 200kHz through 4 MHz. These boundaries are silently enforced by the class.
+- vref is the reference voltage, used to calculate the voltage value. If the internal Vref is used, this allows small
+corrections. If an external Vref is applied, it can be assigned here. Vref is only used for the calculation
+of the equivalent voltage.
 - inverted set True is an inverted is added between the MOSI output and CONV input
 in order to get an high CONV level during quiet times.
 
@@ -25,7 +27,8 @@ value is in the range of 0 - 4095
 ***volt = adc.voltage()***
 
 Reads the adc value and return the equivalent voltage. This is based on the vref
-value set in the constructor.
+value set in the constructor. The formula is:   
+    voltage = 2 * vref * value / 4096
 
 **Interface**
 
