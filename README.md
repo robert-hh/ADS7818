@@ -5,7 +5,7 @@ ensures that the tight timing requirements of the ADS7818 are met.
 
 **Constructor**
 
-***adc = ADS7818(spi, *, baudrate = 1000000, vref = 2.5, inverted = False)***
+***adc = ADS7818(spi, \*, baudrate = 1000000, vref = 2.5, inverted = False)***
 
 - spi is an spi object which has to be created by the callee. The init method
 of the class sets baud rate, phase, polarity and word size.
