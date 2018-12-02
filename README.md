@@ -14,7 +14,7 @@ The valid range is 200kHz through 4 MHz. These boundaries are silently enforced 
 - vref is the reference voltage, used to calculate the voltage value. If the internal Vref is used, this allows small
 corrections. If an external Vref is applied, it can be assigned here. Vref is only used for the calculation
 of the equivalent voltage.
-- inverted set True is an inverted is added between the MOSI output and CONV input
+- inverted set True if an inverter is inserted between the MOSI output and CONV input
 in order to get an high CONV level during quiet times.
 
 ## Methods
