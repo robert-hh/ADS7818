@@ -9,6 +9,7 @@
 #
 from machine import SPI
 
+
 class ADS7818:
     def __init__(self, spi, *, vref=2.5, baudrate=1000000, inverted=False):
         self.spi = spi
@@ -19,7 +20,8 @@ class ADS7818:
         else:
             self.conv = b'\xe0\x00'
         baudrate = min(max(200000, baudrate), 4000000)
-        self.spi.init(SPI.MASTER, baudrate=baudrate, polarity=1, phase=1, bits=16)
+        self.spi.init(SPI.MASTER, baudrate=baudrate,
+                      polarity=1, phase=1, bits=16)
 
     def value(self):
         self.spi.write_readinto(self.conv, self.buf)
@@ -27,4 +29,3 @@ class ADS7818:
 
     def voltage(self):
         return 2.0 * self.vref * self.value() / 4096
-
